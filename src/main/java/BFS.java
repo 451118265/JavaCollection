@@ -1,4 +1,7 @@
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 /**
  * 以广度优先的顺序遍历一棵二叉树
@@ -19,7 +22,25 @@ public class BFS {
      * @return 遍历后的节点值，在上例中，应该返回[3,2,4,1,6,5]
      */
     public static List<Integer> bfsTraverse(TreeNode root) {
-        return null;
+        Queue<TreeNode> queue = new LinkedList<>();
+        List<Integer> list = new LinkedList<>();
+        if(root == null) {
+            return null;
+        }
+        queue.add(root);
+
+        while (!queue.isEmpty() ) {
+            TreeNode node = queue.poll();
+            list.add(node.value);
+
+            if(node.left != null) {
+                queue.add(node.left);
+            }
+            if(node.right != null) {
+                queue.add(node.right);
+            }
+        }
+        return list;
     }
 
     public static class TreeNode {
